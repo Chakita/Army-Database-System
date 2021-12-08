@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3001
 
-const merchant_model = require('./soldier')
+const soldier_model = require('./soldier')
 
 app.use(express.json())
 app.use(function (req, res, next) {
@@ -13,7 +13,7 @@ app.use(function (req, res, next) {
 });
 
 app.get('/', (req, res) => {
-  merchant_model.getMerchants()
+  soldier_model.getSoldiers()
   .then(response => {
     res.status(200).send(response);
   })
@@ -22,8 +22,8 @@ app.get('/', (req, res) => {
   })
 })
 
-app.post('/merchants', (req, res) => {
-  merchant_model.createMerchant(req.body)
+app.post('/soldiers', (req, res) => {
+  soldier_model.createSoldier(req.body)
   .then(response => {
     res.status(200).send(response);
   })
@@ -32,8 +32,8 @@ app.post('/merchants', (req, res) => {
   })
 })
 
-app.delete('/merchants/:id', (req, res) => {
-  merchant_model.deleteMerchant(req.params.id)
+app.delete('/soldier/:msn', (req, res) => {
+  soldier_model.deleteSoldier(req.params.msn)
   .then(response => {
     res.status(200).send(response);
   })
@@ -41,6 +41,27 @@ app.delete('/merchants/:id', (req, res) => {
     res.status(500).send(error);
   })
 })
+
+app.get('/dependents', (req, res) => {
+  soldier_model.getonedep(req.body)
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.get('/hq', (req, res) => {
+  soldier_model.getSoldierHQ(req.params.hq)
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })

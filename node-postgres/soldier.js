@@ -2,8 +2,8 @@ const Pool = require('pg').Pool
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
-  database: '',
-  password: 'root', /* replace with your password*/
+  database: 'cs_077_120_126',
+  password: 'mangifera1234', /* replace with your password*/
   port: 5432,
 });
 const getSoldiers = () => {
