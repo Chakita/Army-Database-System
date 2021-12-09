@@ -32,10 +32,10 @@ app.post('/soldiers', (req, res) => {
   })
 })
 
-app.delete('/soldier/:msn', (req, res) => {
+app.get('/soldier/:msn', (req, res) => {
   soldier_model.deleteSoldier(req.params.msn)
   .then(response => {
-    res.status(200).send(response);
+    return res.status(200).send(response);
   })
   .catch(error => {
     res.status(500).send(error);
@@ -52,7 +52,7 @@ app.get('/dependents', (req, res) => {
   })
 })
 
-app.get('/hq', (req, res) => {
+app.get('/hq/:hq', (req, res) => {
   soldier_model.getSoldierHQ(req.params.hq)
   .then(response => {
     res.status(200).send(response);

@@ -23,6 +23,7 @@ create table regiment (
                         commanderid varchar(50) not null,
                         s_msn varchar(50) not null,
                         foreign key (s_msn) references soldier (msn)
+                        ON DELETE CASCADE
                         );
 
 create table medal (
@@ -30,6 +31,7 @@ create table medal (
                         medalname varchar(50) not null,
                         soldier_msn varchar(50) not null,
                         foreign key (soldier_msn) references soldier (msn)
+                        ON DELETE CASCADE
                     );
 
 create table assignment(
@@ -41,6 +43,7 @@ create table assignment(
                         position varchar(50) not null,
                         sol_msn varchar(50) not null,
                         foreign key (sol_msn) references soldier (msn)
+                        ON DELETE CASCADE
                         );
 
 create table war(
@@ -49,6 +52,7 @@ create table war(
                     status varchar(50) not null,
                     reg_code varchar(50),
                     foreign key (reg_code) references regiment(regiment_code)
+                    ON DELETE CASCADE
                 );
 
 create table location(
@@ -58,8 +62,9 @@ create table location(
                         pincode int not null,
                         msn_sol varchar(50) not null,
                         war_name varchar(50) not null,
-                        foreign key (msn_sol) references soldier (msn),
+                        foreign key (msn_sol) references soldier (msn) ON DELETE CASCADE,
                         foreign key(war_name) references war(warname)
+                        
                     );
 
 create table dependents(
@@ -67,6 +72,7 @@ create table dependents(
                         dependent_name varchar(50) not null,
                         dependent_age int not null,
                         foreign key (msn_of_sol) references soldier (msn)
+                        ON DELETE CASCADE
                         );
 
 create table education(
@@ -74,6 +80,7 @@ create table education(
                         major varchar(50) not null,
                         s_id varchar(50) not null,
                         foreign key (s_id) references soldier (msn)
+                        ON DELETE CASCADE
                         );
 
 create table inventory(
@@ -81,6 +88,7 @@ create table inventory(
                         capacity int not null,
                         regimentcode varchar(50) not null,
                         foreign key (regimentcode) references regiment (regiment_code)
+                        ON DELETE CASCADE
                         );
 
 create table weapons(
@@ -90,6 +98,7 @@ create table weapons(
                         no_of_units int not null,
                         weapon_type varchar(50) not null,
                         foreign key (inv_id) references inventory (inventory_id)
+                        ON DELETE CASCADE
 				        );
 
 create table vehicles(
@@ -100,6 +109,7 @@ create table vehicles(
                         vehicle_type varchar(50) not null,
                         fuel varchar(50) not null,
                         foreign key (inven_id) references inventory (inventory_id)
+                        ON DELETE CASCADE
 				        );
 
 create table ration(
@@ -109,4 +119,5 @@ create table ration(
                         no_of_units int not null,
                         ration_type varchar(50) not null,
                         foreign key (inventory_num) references inventory (inventory_id)
+                        ON DELETE CASCADE
 				        );
