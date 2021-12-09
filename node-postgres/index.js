@@ -32,10 +32,10 @@ app.post('/soldiers', (req, res) => {
   })
 })
 
-app.delete('/soldier/:msn', (req, res) => {
+app.get('/soldier/:msn', (req, res) => {
   soldier_model.deleteSoldier(req.params.msn)
   .then(response => {
-    res.status(200).send(response);
+    return res.status(200).send(response);
   })
   .catch(error => {
     res.status(500).send(error);

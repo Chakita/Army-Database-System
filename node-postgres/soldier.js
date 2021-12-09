@@ -3,7 +3,7 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'cs_077_120_126',
-  password: 'testing123', /* replace with your password*/
+  password: 'mangifera1234', /* replace with your password*/
   port: 5432,
 });
 const getSoldiers = () => {
@@ -27,9 +27,8 @@ const getSoldiers = () => {
       })
     })
   }
-  const deleteSoldier = () => {
+  const deleteSoldier = (msn) => {
     return new Promise(function(resolve, reject) {
-      const msn = request.params.msn
       pool.query('DELETE FROM soldier WHERE msn = $1', [msn], (error, results) => {
         if (error) {
           reject(error)
