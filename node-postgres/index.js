@@ -52,7 +52,7 @@ app.get('/dependents', (req, res) => {
   })
 })
 
-app.get('/hq', (req, res) => {
+app.get('/hq/:hq', (req, res) => {
   soldier_model.getSoldierHQ(req.params.hq)
   .then(response => {
     res.status(200).send(response);

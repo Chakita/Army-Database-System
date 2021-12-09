@@ -3,7 +3,7 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'cs_077_120_126',
-  password: 'mangifera1234', /* replace with your password*/
+  password: 'testing1234', /* replace with your password*/
   port: 5432,
 });
 const getSoldiers = () => {
@@ -47,9 +47,8 @@ const getSoldiers = () => {
       })
     }) 
   }
-  const getSoldierHQ = () => {
+  const getSoldierHQ = (hq) => {
     return new Promise(function(resolve, reject) {
-      const hq = request.params.hq
       pool.query('Select msn from (soldier join regiment on msn=s_msn) where hqcity = $1', [hq], (error, results) => {
         if (error) {
           reject(error)
